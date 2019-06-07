@@ -1,5 +1,6 @@
-package com.example.wallpaperapp;
+package com.example.wallpaperapp.activities;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.wallpaperapp.R;
+import com.example.wallpaperapp.fragments.fragment_collections;
+import com.example.wallpaperapp.fragments.fragment_photos;
+import com.example.wallpaperapp.fragments.fragments_favorite;
+import com.example.wallpaperapp.utils.functions;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -32,6 +39,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        fragment_photos fragment_photos=new fragment_photos();
+        functions.change(MainActivity.this,fragment_photos);
     }
 
     @Override
@@ -73,10 +82,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.pics) {
-            // Handle the camera action
+            fragment_photos fragment_photos=new fragment_photos();
+            functions.change(MainActivity.this,fragment_photos);
         } else if (id == R.id.collections) {
+            fragment_collections fragmentCollections=new fragment_collections();
+            functions.change(MainActivity.this,fragmentCollections);
 
         } else if (id == R.id.fav) {
+            fragments_favorite fragmentsFavorite=new fragments_favorite();
+            functions.change(MainActivity.this,fragmentsFavorite);
 
         }
 
